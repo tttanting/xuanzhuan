@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+		/*将透视点放在最外层固定好,防止图形在旋转的时候发生变形,设置了透视才有立体感觉*/
+			#main{
+				perspective: 1000px;
+				display: flex;
+				justify-content: center;
+				
+			}
+			#view{
+				width: 200px;
+				height: 200px;
+				margin:100px auto;
+				position: relative;
+				/*旋转的时候保留3d的状态*/
+				transform-style: preserve-3d;
+				/*animation: a1 linear 10s;*/
+				
+				/*设置旋转时间为1s*/
+				transition: all 1s;
+				
+				
+				
+				
+			}
+			@keyframes a1{
+				from{transform: rotateX(0deg) rotateY(0deg);}
+				to{transform: rotateX(360deg) rotateY(360deg);}
+			}
+			#view div{
+				width: 200px;
+				height: 200px;
+				background-size: 100% 100%;
+				position: absolute;
+				top:0px;
+				left:0px;
+				/*设置透明度，所以可以看到正方体后面的边*/
+				opacity: 0.6;
+				
+				/*设置内阴影*/
+				box-shadow: 0px opx 20px #ccc;
+			}
+			#front{
+				background: url(img/image1.jpg);
+				transform: translateZ(100px);
+				
+			}
+			#back{
+				background: url(img/image2.jpg);
+				transform:rotateY(180deg) translateZ(100px);
+			}
+			#left{
+				background: url(img/image3.jpg);
+				transform: rotateY(90deg) translateZ(100px);
+			}
+			#right{
+				background: url(img/image4.jpg);
+				transform:rotateY(-90deg) translateZ(100px);
+			}
+			#top{
+				background: url(img/image5.jpg);
+				transform:rotateX(90deg) translateZ(100px);
+			}
+			#buttom{
+				background: url(img/image6.jpg);
+				transform:rotateX(-90deg) translateZ(100px);
+			}
+			
+			
+			#sz1:checked ~#main #view{
+				transform: rotateX(10deg) rotateY(10deg) rotateZ(0deg);
+			}
+			#sz2:checked ~#main #view{
+				transform: rotateX(10deg) rotateY(180deg) rotateZ(0deg);
+			}
+			#sz3:checked ~#main #view{
+				transform: rotateX(10deg) rotateY(90deg) rotateZ(0deg);
+			}
+			
+			#sz4:checked ~#main #view{
+				transform: rotateX(10deg) rotateY(-90deg) rotateZ(0deg);
+			}
+			#sz5:checked ~#main #view{
+				transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg);
+			}
+			#sz6:checked ~#main #view{
+				transform: rotateX(-90deg) rotateY(10deg) rotateZ(0deg);
+			}
+			#sz7:checked ~#main #view{
+				transform: scale(2);
+			}
+			
+			
+			input{
+				display: none;
+			}
+			
+			
+		</style>
+	</head>
+	
+	
+	
+	<body>
+		<div id="ff">
+		<label for="sz1" id="label1">正面</label>
+		<label for="sz2" id="label2">背面</label>
+		<label for="sz3" id="label3">左面</label>
+		<label for="sz4" id="label4">右面</label>
+		<label for="sz5" id="label5">上面</label>
+		<label for="sz6" id="label6">下面</label>
+		<label for="sz7" id="label7">放大</label>
+		<input type="radio" name="sz" id="sz1" value="" />
+		<input type="radio" name="sz" id="sz2" value="" />
+		<input type="radio" name="sz" id="sz3" value="" />
+		<input type="radio" name="sz" id="sz4" value="" />
+		<input type="radio" name="sz" id="sz5" value="" />
+		<input type="radio" name="sz" id="sz6" value="" />
+		<input type="radio" name="sz" id="sz7" value="" />
+		
+		<div id="main">
+			<div id="view">
+				<div id="front"></div>
+				<div id="back"></div>
+				<div id="left"></div>
+				<div id="right"></div>
+				<div id="top"></div>
+				<div id="bottom"></div>
+			</div>
+			
+		</div>
+		
+		</div>
+		
+		
+	</body>
+</html>
